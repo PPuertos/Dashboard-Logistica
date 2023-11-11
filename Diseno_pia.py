@@ -18,6 +18,7 @@ import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 import sqlite3
+import plotly.colors as colors
 
 # Data Frame con la información de los Autobuses y sus Destinos
 df = pd.read_csv('centro_de_distribucion_puntos.csv')
@@ -102,11 +103,16 @@ costo_por_destino = pd.read_sql_query(query1,conn)
 ### Promedio de Costo ####
 promedio_costo = df_presupuesto["costo_total"].mean()
 
-### Esquema de colores ###
-esquema_colores = ["#0aff00", "#50ff00", "#96ff00", "#dcff00", "#ffe100", "#ff9b00", "#ff5500", "#ff0f00", "#ff0000"]
+# Definir los colores base
+verde = "#00ff00"
+amarillo = "#ffff00"
+rojo = "#ff0000"
+
+# Crear la paleta de colores continua
+paleta_continua = colors.make_colorscale([verde, amarillo, rojo])
 
 grafico1 = px.bar(df_presupuesto,y='costo_total',x='pto_dist',title=f"Costos por Ciudad de Destino",template='plotly_dark',labels={'pto_dist':'Ciudad', 'costo_total':'Costo'},
-                  color='costo_total',color_continuous_scale=esquema_colores,color_continuous_midpoint=promedio_costo)
+                  color='costo_total',color_continuous_scale=paleta_continua,color_continuous_midpoint=promedio_costo)
 
 
 ## Para posteriormente llamar a la app
@@ -269,10 +275,10 @@ mapa_trayectos = m._repr_html_()
 ### Objetos ###
 
 ### Mapa ###
-mapa = dbc.Card(html.Iframe(id="mapa",style={'width':'100%','height':'400px'}), body=True,className="mi-mapa")
+mapa = dbc.Card(html.Iframe(id="mapa",style={'width':'100%','height':'345px'}), body=True,className="mi-mapa")
 
 ### Grafico de Barra ###
-grafico_barra = dbc.Card(dcc.Graph(id="asset-allocation",figure=grafico1,style={'height':'400px'}), body=True)
+grafico_barra = dbc.Card(dcc.Graph(id="asset-allocation",figure=grafico1,style={'height':'350px'}), body=True)
 
 ### Titulo del dashboard ###
 header = html.Div("Transpor-T", className="h2 p-2 text-white bg-primary text-center",id='titulo')
