@@ -94,6 +94,9 @@ query1 = 'SELECT pto_dist, costo_total FROM costo'
 costo_por_destino = pd.read_sql_query(query1,conn)
 
 ### Primer Grafico ###
+### Primer Grafico ###
+### Primer Grafico ###
+
 ### Grafico de Barras ###
 
 ### Promedio de Costo ####
@@ -342,5 +345,3 @@ def update_map(selected_row):
      
 if __name__ == "__main__":
     app.run_server(debug=True)
-
-
