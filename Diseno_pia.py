@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sqlite3
 import plotly.colors as colors
+from dash_bootstrap_templates import load_figure_template
 
 # Data Frame con la información de los Autobuses y sus Destinos
 df = pd.read_csv('centro_de_distribucion_puntos.csv')
@@ -111,7 +112,7 @@ rojo = "#ff0000"
 # Crear la paleta de colores continua
 paleta_continua = colors.make_colorscale([verde, amarillo, rojo])
 
-grafico1 = px.bar(df_presupuesto,y='costo_total',x='pto_dist',title=f"Costos por Ciudad de Destino",template='plotly_dark',labels={'pto_dist':'Ciudad', 'costo_total':'Costo'},
+grafico1 = px.bar(df_presupuesto,y='costo_total',x='pto_dist',title=f"Costos por Ciudad de Destino",template=load_figure_template('bootstrap_dark'),labels={'pto_dist':'Ciudad', 'costo_total':'Costo'},
                   color='costo_total',color_continuous_scale=paleta_continua,color_continuous_midpoint=promedio_costo)
 
 
@@ -194,6 +195,7 @@ grid = dag.AgGrid(
     columnSize="sizeToFit",
     defaultColDef=defaultColDef,
     dashGridOptions={"undoRedoCellEditing": True, "rowSelection": "multiple","rowMultiSelectWithClick": False},
+    style={'height':'35vh'}
 )
 
 #### Mapa Con Todos los Trayectos ####
@@ -275,10 +277,10 @@ mapa_trayectos = m._repr_html_()
 ### Objetos ###
 
 ### Mapa ###
-mapa = dbc.Card(html.Iframe(id="mapa",style={'width':'100%','height':'345px'}), body=True,className="mi-mapa")
+mapa = dbc.Card(html.Iframe(id="mapa",style={'width':'100%','height':'45vh'}), body=True,className="mi-mapa")
 
 ### Grafico de Barra ###
-grafico_barra = dbc.Card(dcc.Graph(id="asset-allocation",figure=grafico1,style={'height':'350px'}), body=True)
+grafico_barra = dbc.Card(dcc.Graph(id="asset-allocation",figure=grafico1,style={'height':'45vh'}), body=True)
 
 ### Titulo del dashboard ###
 header = html.Div("Transpor-T", className="h2 p-2 text-white bg-primary text-center",id='titulo')
