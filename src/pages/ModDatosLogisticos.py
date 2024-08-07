@@ -5,7 +5,7 @@ from shapely.geometry import MultiLineString, Point
 import folium
 
 # Data Frame con la información de los Autobuses y sus Destinos
-df = pd.read_csv('/Users/macbook/Documents/Semestre 5/Programación/Dashboard-Logística/Dashboard-Logistica/centro_de_distribucion_puntos.csv')
+df = pd.read_csv('/Users/macbook/Documents/Semestre5/Programación/Dashboard-Logística/Dashboard-Logistica/src/centro_de_distribucion_puntos.csv')
 ####################################################################
 # Importando la clase ruteo que pertenece a la librería INEGIpy, con token para acceder a la información
 ruteo = INEGIpy.Ruteo('xVC8A3aI-kema-ZmWE-jPzF-8f2GfLCp6jb9')
