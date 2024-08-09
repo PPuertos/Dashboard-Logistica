@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 from pages import ModDatosLogisticos
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY], use_pages=True,suppress_callback_exceptions=True)
+server = app.server
 
 app.layout = html.Div([
 
