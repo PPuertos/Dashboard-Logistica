@@ -1,7 +1,7 @@
 attr==0.3.2
 colorama==0.4.6
 ConfigParser==7.0.0
-cryptography==42.0.8
+cryptography==46.0.5
 Cython==3.0.11
 dash==2.14.1
 dash_ag_grid==2.4.0
